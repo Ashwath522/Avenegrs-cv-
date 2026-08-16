@@ -1,0 +1,80 @@
+.loading-container {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 50;
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.loading-three {
+  position: absolute;
+  inset: 0;
+}
+
+.loading-three canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.loading-text {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  bottom: -30vh;
+}
+
+.loading-hero-name {
+  font-size: 3rem;
+  font-weight: 900;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  animation: heroNameReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes heroNameReveal {
+  from { opacity: 0; transform: scaleX(0.3); letter-spacing: 0.8em; }
+  to   { opacity: 1; transform: scaleX(1); letter-spacing: 0.4em; }
+}
+
+.loading-status {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  animation: blink 1s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 1; }
+}
+
+.loading-bar-wrap {
+  width: 200px;
+  height: 2px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.loading-bar-fill {
+  height: 100%;
+  border-radius: 1px;
+  animation: loadFill 2.5s ease-in-out forwards;
+  box-shadow: 0 0 8px currentColor;
+}
+
+@keyframes loadFill {
+  from { width: 0%; }
+  to   { width: 100%; }
+}

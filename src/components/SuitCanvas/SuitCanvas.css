@@ -1,0 +1,110 @@
+.suit-canvas-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.suit-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ---- Scanning overlay ---- */
+.scan-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(100,200,255,0.8), transparent);
+  animation: scanDown 1.5s ease-in-out infinite;
+  box-shadow: 0 0 10px rgba(100,200,255,0.6);
+}
+
+@keyframes scanDown {
+  0%   { top: 0; opacity: 1; }
+  100% { top: 100%; opacity: 0.3; }
+}
+
+.scan-status {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(100,200,255,0.3);
+  border-radius: 6px;
+  padding: 8px 14px;
+}
+
+.scan-label {
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: rgba(100,200,255,0.8);
+}
+
+.scan-bar {
+  width: 100px;
+  height: 3px;
+  background: rgba(100,200,255,0.15);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.scan-fill {
+  height: 100%;
+  background: rgba(100,200,255,0.8);
+  border-radius: 2px;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 6px rgba(100,200,255,0.6);
+}
+
+.scan-pct {
+  font-family: var(--font-display);
+  font-size: 0.55rem;
+  color: rgba(100,200,255,0.6);
+  min-width: 28px;
+}
+
+/* ---- Re-acquire prompt ---- */
+.reacquire-prompt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,140,0,0.5);
+  border-radius: 12px;
+  padding: 20px 32px;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: rgba(255,140,0,0.9);
+  animation: reacquirePulse 1s ease-in-out infinite;
+}
+
+.reacquire-icon {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+@keyframes reacquirePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,140,0,0.3); }
+  50%       { box-shadow: 0 0 0 12px rgba(255,140,0,0); }
+}

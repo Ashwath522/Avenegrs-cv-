@@ -1,0 +1,203 @@
+.splash-container {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #000;
+}
+
+.splash-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.splash-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  pointer-events: auto; /* Allow clicks on buttons */
+}
+
+/* ---- Avengers Logo ---- */
+.avengers-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo-svg {
+  width: 180px;
+  height: 180px;
+  filter: drop-shadow(0 0 30px rgba(192, 57, 43, 0.7));
+  animation: logoAppear 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes logoAppear {
+  0%   { opacity: 0; transform: scale(0.3) rotate(-15deg); filter: drop-shadow(0 0 80px rgba(192,57,43,1)); }
+  60%  { opacity: 1; transform: scale(1.08) rotate(2deg); }
+  80%  { transform: scale(0.96) rotate(-1deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+.logo-ring {
+  stroke-dasharray: 565;
+  stroke-dashoffset: 565;
+  animation: ringDraw 1.2s ease-out 0.3s forwards;
+}
+
+.logo-ring-inner {
+  stroke-dasharray: 515;
+  stroke-dashoffset: 515;
+  animation: ringDraw 1.0s ease-out 0.5s forwards;
+}
+
+@keyframes ringDraw {
+  to { stroke-dashoffset: 0; }
+}
+
+.logo-a {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out 0.8s forwards;
+  filter: drop-shadow(0 0 12px rgba(192, 57, 43, 0.8));
+}
+
+.logo-bar {
+  opacity: 0;
+  stroke-dasharray: 50;
+  stroke-dashoffset: 50;
+  animation: barDraw 0.4s ease-out 1.2s forwards;
+}
+
+@keyframes barDraw {
+  to { opacity: 1; stroke-dashoffset: 0; }
+}
+
+.logo-glow {
+  opacity: 0;
+  animation: glowAppear 1s ease-out 1s forwards;
+}
+
+@keyframes glowAppear {
+  0%   { opacity: 0; r: 95; }
+  50%  { opacity: 0.6; }
+  100% { opacity: 0; r: 110; }
+}
+
+.logo-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3.5rem;
+  letter-spacing: 0.1em;
+  color: #fff;
+  text-shadow: 0 0 20px rgba(192,57,43,0.8), 0 0 40px rgba(192,57,43,0.4);
+  opacity: 0;
+  transform: scaleY(1.2);
+  animation: fadeIn 0.8s ease-out 1.4s forwards;
+}
+
+.logo-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 1.8s forwards;
+}
+
+/* ---- Enter Prompt ---- */
+.enter-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.enter-hint {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  color: rgba(100, 200, 255, 0.6);
+  text-transform: uppercase;
+}
+
+.enter-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 40px;
+  background: rgba(192, 57, 43, 0.15);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(192, 57, 43, 0.6);
+  border-radius: 4px;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  animation: btnPulse 2s ease-in-out infinite;
+}
+
+@keyframes btnPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(192,57,43,0.4); }
+  50%       { box-shadow: 0 0 0 12px rgba(192,57,43,0); }
+}
+
+.enter-btn:hover {
+  background: rgba(192, 57, 43, 0.3);
+  border-color: rgba(243, 156, 18, 0.8);
+  box-shadow: 0 0 30px rgba(192, 57, 43, 0.5);
+  transform: translateY(-2px);
+}
+
+.enter-btn:active {
+  transform: translateY(0);
+}
+
+.enter-text {
+  position: relative;
+  z-index: 1;
+}
+
+.enter-arrow {
+  font-size: 1.4rem;
+  color: rgba(243, 156, 18, 0.9);
+  animation: arrowBounce 1.2s ease-in-out infinite;
+}
+
+@keyframes arrowBounce {
+  0%, 100% { transform: translateX(0); }
+  50%       { transform: translateX(6px); }
+}
+
+.enter-subtext {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.25);
+  text-transform: uppercase;
+}
+
+/* ---- Corner decorations ---- */
+.corner {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-color: rgba(192,57,43,0.4);
+  border-style: solid;
+  z-index: 2;
+}
+
+.corner-tl { top: 20px; left: 20px; border-width: 2px 0 0 2px; }
+.corner-tr { top: 20px; right: 20px; border-width: 2px 2px 0 0; }
+.corner-bl { bottom: 20px; left: 20px; border-width: 0 0 2px 2px; }
+.corner-br { bottom: 20px; right: 20px; border-width: 0 2px 2px 0; }

@@ -1,0 +1,215 @@
+.hud-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* ---- Quadrant blocks ---- */
+.hud-topleft,
+.hud-topright,
+.hud-bottomleft,
+.hud-bottomright {
+  position: absolute;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hud-topleft    { top: 16px; left: 16px; }
+.hud-topright   { top: 16px; right: 16px; align-items: flex-end; }
+.hud-bottomleft { bottom: 16px; left: 16px; }
+.hud-bottomright{ bottom: 16px; right: 16px; align-items: flex-end; }
+
+/* ---- Hero name ---- */
+.hud-heroname {
+  font-size: 1.1rem;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  text-shadow: 0 0 16px var(--hud-glow);
+}
+
+.hud-state {
+  font-family: var(--font-body);
+  font-size: 0.55rem;
+  letter-spacing: 0.25em;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+}
+
+/* ---- Gesture readout ---- */
+.hud-gesture {
+  font-family: var(--font-display);
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.5);
+  text-align: right;
+}
+
+.hud-hand-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.hand-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+}
+
+.hand-dot.active {
+  background: #00ff88;
+  box-shadow: 0 0 6px #00ff88;
+  animation: dotPulse 1s ease-in-out infinite;
+}
+
+.hand-dot.inactive {
+  background: #ff4444;
+}
+
+@keyframes dotPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+.hand-label {
+  font-family: var(--font-body);
+  font-size: 0.5rem;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.3);
+}
+
+/* ---- Confidence bar ---- */
+.hud-conf-label {
+  font-family: var(--font-body);
+  font-size: 0.48rem;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.25);
+  text-transform: uppercase;
+}
+
+.hud-conf-bar {
+  width: 100px;
+  height: 2px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.hud-conf-fill {
+  height: 100%;
+  border-radius: 1px;
+  transition: width 0.5s ease;
+}
+
+/* ---- Hints ---- */
+.hud-hint {
+  font-family: var(--font-display);
+  font-size: 0.5rem;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.3);
+  text-transform: uppercase;
+  text-align: right;
+}
+
+.power-hint {
+  animation: glowPulse 1s ease-in-out infinite;
+}
+
+/* ---- Iron Man reticle corners ---- */
+.hud-ironman {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.reticle-corner {
+  position: absolute;
+  width: 20px; height: 20px;
+  border-style: solid;
+  opacity: 0.5;
+}
+
+.rc-tl { top: 10px; left: 10px; border-width: 2px 0 0 2px; }
+.rc-tr { top: 10px; right: 10px; border-width: 2px 2px 0 0; }
+.rc-bl { bottom: 10px; left: 10px; border-width: 0 0 2px 2px; }
+.rc-br { bottom: 10px; right: 10px; border-width: 0 2px 2px 0; }
+
+.ironman-power-ring {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid;
+  border-radius: 50%;
+  width: 200px; height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 0.5rem;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.5);
+  animation: ringRotate 3s linear infinite;
+}
+
+@keyframes ringRotate {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ---- Thor HUD ---- */
+.hud-thor {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.thor-lightning-bar {
+  width: 120px;
+  height: 3px;
+  background: rgba(200,220,255,0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.thor-lightning-fill {
+  height: 100%;
+  border-radius: 2px;
+  animation: thorFill 2s ease-in-out infinite alternate;
+}
+
+@keyframes thorFill {
+  0%   { width: 30%; opacity: 0.6; }
+  100% { width: 100%; opacity: 1; box-shadow: 0 0 12px currentColor; }
+}
+
+.thor-label {
+  font-family: var(--font-display);
+  font-size: 0.45rem;
+  letter-spacing: 0.2em;
+}
+
+/* ---- Venom edge ---- */
+.hud-venom {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.venom-symbiote-edge {
+  position: absolute;
+  inset: 0;
+  border: 12px solid rgba(0,0,0,0.4);
+  animation: symbioteEdge 3s ease-in-out infinite;
+}
+
+@keyframes symbioteEdge {
+  0%, 100% { border-width: 12px; opacity: 0.4; }
+  50%       { border-width: 20px; opacity: 0.7; }
+}
