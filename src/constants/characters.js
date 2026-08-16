@@ -104,7 +104,7 @@ export const CHARACTER_LIST = Object.values(CHARACTERS);
 
 // Gesture thresholds
 export const GESTURE = {
-  DWELL_MS: 600,
+  DWELL_MS: 1200,
   PINCH_THRESHOLD: 0.08,       // normalized distance
   SWIPE_VELOCITY: 0.015,       // normalized units/frame
   OPEN_PALM_THRESHOLD: 0.18,   // fingertip-to-wrist normalized

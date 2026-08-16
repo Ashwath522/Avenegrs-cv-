@@ -79,19 +79,14 @@ export default function CharacterSelect({ gestureData, onSelect, onBack }) {
         }
       }
 
-      // Dwell confirmed
+      // Dwell confirmed (auto-select)
       if (result.confirmed && !confirmedId) {
         setConfirmedId(char.id);
         audioManager.playCharacterSelect(char.id);
-        // Need pinch to actually confirm — wait for pinch
+        audioManager.playPinchConfirm(); // play success sound
+        setTimeout(() => onSelect(char.id), 200);
       }
     });
-
-    // Pinch confirms the dwell-selected character
-    if (isPinching && confirmedId) {
-      audioManager.playPinchConfirm();
-      setTimeout(() => onSelect(confirmedId), 200);
-    }
   }, [gestureData]);
 
   const handleCardClick = (id) => {
@@ -160,7 +155,7 @@ export default function CharacterSelect({ gestureData, onSelect, onBack }) {
             {/* Confirm indicator */}
             {isConfirmed && (
               <div className="char-confirm-ring" style={{ borderColor: char.primaryColor }}>
-                PINCH TO CONFIRM
+                SUIT SELECTED
               </div>
             )}
 
