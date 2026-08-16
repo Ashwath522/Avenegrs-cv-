@@ -1,48 +1,91 @@
-/* App.css */
-.blurred {
-  filter: blur(10px);
-  opacity: 0.5;
-  transition: all 0.5s ease;
+/* App.css (Minimal Foundation Test) */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  color: #fff;
+  font-family: sans-serif;
+  overflow: hidden;
 }
 
-.permission-overlay {
+.app-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 
+  Both the camera feed and the tracking canvas are mirrored 
+  so it behaves like a selfie mirror. 
+  They are absolutely positioned to overlay perfectly. 
+*/
+.camera-feed,
+.tracking-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Fill the screen */
+  transform: scaleX(-1); /* Mirror horizontal */
+  pointer-events: none; /* Ignore clicks */
+}
+
+/* Ensure canvas sits on top of video */
+.tracking-canvas {
+  z-index: 10;
+}
+
+/* Simple UI overlays */
+.fps-counter {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #00ff00;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 16px;
+  z-index: 20;
+}
+
+.error-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 40px;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #ff5555;
+}
+
+.loading-overlay {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  padding: 40px;
+  background: rgba(0, 0, 0, 0.85);
+  padding: 30px;
+  border-radius: 8px;
   text-align: center;
-  pointer-events: all;
-  z-index: 100;
+  z-index: 20;
+  border: 1px solid #333;
 }
 
-.permission-overlay h2 {
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  letter-spacing: 0.2em;
-  color: var(--text-primary);
-  margin: 0;
+.loading-overlay h2 {
+  margin-top: 0;
+  color: #fff;
 }
 
-.loading-msg {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  letter-spacing: 0.1em;
-}
-
-.spinner {
-  width: 40px;
-  height: 40px;
-  border: 3px solid rgba(255, 255, 255, 0.1);
-  border-top-color: rgba(100, 200, 255, 0.8);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
+.loading-overlay p {
+  color: #aaa;
+  margin-bottom: 0;
 }
